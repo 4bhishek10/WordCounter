@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/styles.css' %}>
+    <title>Word counter</title>
+</head>
+
+<body>
+    <nav>
+        <h3>Word Counter</h3>
+        <ul>
+            {% comment %} <li><a href="" class="navLink">Home</a></li> {% endcomment %}
+            {% if user.is_authenticated %}
+            <li><a href="history" class="navLink">Profile</a></li>
+            {% if user.is_superuser %}
+            <li><a href="admin-panel" class="navLink">Admin Panel</a></li>
+            {% endif %}
+            <li><a href="logout" class="navLink">logout</a></li>
+            {% else %}
+            <li><a href="signup" class="navLink">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="main">
+        <div class="form">
+            <form method="GET" action="count">
+                <!-- <textarea name="" cols="60" rows="20"></textarea> -->
+                <textarea name="text" placeholder="Paste your paragrah here..." id="text" ></textarea>
+                <div class="button">
+                    {% if counter == 0 %}
+                    <button id="count" class="btn" type="submit">Count</button>
+                    {% else %}
+                    <p>Please login to continue</p>
+                    {% endif %}
+                    <button id="clear" class="btn" onclick="getElementById('text').value=''">Clear</button>
+                </div>
+            </form>
+
+            <div style="margin-top: 10px;">
+                <button id="spell" class="btn" type="" onclick="getElementById('text').setAttribute('spellcheck', true)">spellcheck ON</button>
+                <button id="spell" class="btn" type="" onclick="getElementById('text').setAttribute('spellcheck', false)">spellcheck OFF</button>
+            </div>
+            
+        </div>
+        <div class="info">
+            <h3 class="title">Details</h3>
+            <h4 class="details">*Number of words: <label id="words">{{words}}</label></h4>
+            <h4 class="details">*Number of characters: <label id="characters">{{char}}</label></h4>
+            <h4 class="details">*Number of sentences: <label id="sentences">{{sentence}}</label></h4>
+            <h4 class="details">*Number of paragraphs: <label id="paragraph">{{paragraph}}</label></h4>
+        </div>
+    </div>
+
+    <div class="how">
+        <h3>What is WordCounter?</h3>
+        <p>Knowing the word count of a text can be important. For example, if an author has to write a minimum or maximum amount of words for an article, essay, report, story, book, paper, you name it. WordCounter will help to make sure its word count reaches a specific requirement or stays within a certain limit.</p>
+        <p>In addition, WordCounter shows you the top 10 keywords and keyword density of the article you're writing. This allows you to know which keywords you use how often and at what percentages. This can prevent you from over-using certain words or word combinations and check for best distribution of keywords in your writing.</p>
+        <p>In the Details overview you can see the average speaking and reading time for your text, while Reading Level is an indicator of the education level a person would need in order to understand the words you’re using.</p>
+    </div>
+
+    <footer>
+        
+    </footer>
+</body>
+
+</html>

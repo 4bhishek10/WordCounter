@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/history.css' %}>
+    <title>Word counter</title>
+</head>
+
+<body>
+    <nav>
+        <h3>Word Counter</h3>
+        <ul>
+            <li><a href="/" class="navLink">Home</a></li>
+            <li><a href="signup" class="navLink">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <div class="main" style="width:80%;">
+        <div class="">
+            <h3 id="heading">Users</h3>
+        </div>
+
+        {% for u in users %}
+        
+        <div class="head">
+            <div style="width:50%; text-align: left;">
+            <p id="text">Username : {{u.username}}</p>
+            <p id="text">Email : {{u.email}}</p>
+                {% if u.is_superuser %}
+                <p id="text">SuperUser : True</p>
+                {%else%}
+                <p id="text">SuperUser : False</p>
+                {% endif %}
+            </div>
+        </div>
+        {%endfor%}
+
+        
+
+    </div>
+
+
+    <div class="main" style="width:80%;">
+        <div class="">
+            <h3 id="heading">Data</h3>
+        </div>
+        {% for d in data %}
+        <div class="head">
+            <div style="width:50%; text-align: left;">
+            <p id="text">Row id : {{d.id}}</p>
+            <p id="text">Email : {{d.email}}</p>
+            <p id="text">Text_Input : {{d.text}}</p>
+            <p id="text">Number of words : {{d.words}}</p>
+            <p id="text">number of characters : {{d.characters}}</p>
+            <p id="text">Number of sentences : {{d.sentences}}</p>
+            <p id="text">Number of paragraphs : {{d.paragraphs}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="main" style="width:80%;">
+        <div class="">
+            <h3 id="heading">Editing Data</h3>
+        </div>
+        
+        <div class="head">
+            <form method="GET" action="delete">
+                <label>Delete the record using id</label>
+                <input type='number' name='id' placeholder='Enter Row id'>
+                <input type='submit' value='Delete'>
+            </form>
+        </div>
+
+        
+    </div>
+
+
+    <div class="main" style="width:80%;">
+        <div class="">
+            <h3 id="heading">Editing Users</h3>
+        </div>
+        
+        <div class="head">
+            <form method="GET" action="add">
+                <label for="name">UserName</label>
+                <input type="text" name="name">
+                <label for="email">Email</label>
+                <input type="email" name="email">
+                <label for="password">Password</label>
+                <input type="password" name="password">
+                <button id="" type="submit">Add user</button><br>
+            </form>
+        </div>
+
+        <div class="head">
+            <form method="GET" action="deleteUser">
+                <label for="email">Enter email of user which should be deleted</label>
+                <input type="email" name="email" placeholder='email'>
+                <button id="" type="submit">Delete user</button><br>
+            </form>
+        </div>
+
+        
+    </div>
+
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>

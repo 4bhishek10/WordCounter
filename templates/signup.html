@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/signup.css' %}>
+    <title>Word counter</title>
+</head>
+
+<body>
+    <nav>
+        <h3>Word Counter</h3>
+        <ul>
+            <li><a href="/" class="navLink">Home</a></li>
+            <li><a href="signup" class="navLink">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <div class="main">
+        <div class="head">
+            <h3 id="heading">Sign-Up</h3>
+        </div>
+        <div class="form">
+            <form action="signup" method='POST'>
+                {% csrf_token %}
+                <label for="name" class="usrInfo">UserName</label>
+                <input type="text" name="name" class="textarea">
+                <label for="email" class="usrInfo">Email</label>
+                <input type="email" name="email" class="textarea">
+                <label for="password" class="usrInfo">Password</label>
+                <input type="password" name="password" class="textarea">
+                <button id="SignUp" type="submit">SignUp</button><br>
+            <hr>
+            </form>
+        </div>
+        <div class="buttons">
+            
+            <p>Already have an account?</p>
+            <a id="SignIn"  href="login">SignIn</a>
+        </div>
+
+    </div>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
